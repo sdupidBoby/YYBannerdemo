@@ -1,5 +1,6 @@
 # YYBannerdemo
 iOS 实现凤凰新闻的视觉差轮播图
+/* code initialize */
 
     NSMutableArray * arr = [[NSMutableArray alloc]init];
     for (int i = 1; i <= 3; i ++ ) {
@@ -8,7 +9,7 @@ iOS 实现凤凰新闻的视觉差轮播图
         model.title = [NSString stringWithFormat:@"CF_Album_BG5%d",i ];
         [arr addObject:model];
     }
-/* code initialize */
+    
     YYBannerView * bannerView = [[YYBannerView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 300)];
     [self.view addSubview:bannerView];
     [bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
