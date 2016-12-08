@@ -368,6 +368,7 @@
     gradientLayer.startPoint = CGPointMake(0.5, 1);
     gradientLayer.endPoint = CGPointMake(0.5, 0);
     gradientLayer.type = kCAGradientLayerAxial;
+    gradientLayer.rasterizationScale = [UIScreen mainScreen].scale;
     self.titleBackLayer = gradientLayer;
     [self.titleBackView.layer insertSublayer:gradientLayer atIndex:0];
     
