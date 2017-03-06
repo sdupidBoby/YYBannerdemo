@@ -252,6 +252,7 @@
     
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    scrollView.contentInset = UIEdgeInsetsZero;
     [self pauseTimer];
 }
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
