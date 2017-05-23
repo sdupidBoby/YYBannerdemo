@@ -57,17 +57,23 @@
     }
 }
 
-
 - (void)setOffsetWithFactor:(float)value{
-    CGRect  selfToWindow = [self convertRect:self.bounds toView:self.window]; //当前View的frame
+    CGRect  selfToWindow = [self convertRect:self.bounds toView:YYBannerContentView_getConvertView(self)]; //当前View的frame
     CGFloat selfCenterX = CGRectGetMidX(selfToWindow); //当前View的centerX
-    CGPoint windowCenter = self.window.center;
+    CGPoint windowCenter = YYBannerContentView_getConvertView(self).center;
     CGFloat selfOffsetX = selfCenterX - windowCenter.x; //偏移距离
     
     CGAffineTransform transX = CGAffineTransformMakeTranslation(- selfOffsetX * value, 0);
-    
-//    NSLog(@"%@ centerX:%.3f windowCenter:%@ cellOffsetX:%.3f tras: %.3f  \n %@", NSStringFromCGRect(selfToWindow) ,selfCenterX  ,NSStringFromCGPoint( windowCenter) ,selfOffsetX , - selfOffsetX * value, NSStringFromCGRect(self.bounds));
+    //    NSLog(@" 当前ContenView:%.3f windowCenter:%@ image偏移:%.3f 偏移系数(值)：%.3f  \n %@" ,selfCenterX  ,NSStringFromCGPoint( windowCenter) ,selfOffsetX , - selfOffsetX * value, NSStringFromCGRect(self.bounds));
     self.contentIMG.transform = transX;
 }
 
+static inline UIView * YYBannerContentView_getConvertView(UIView * view){
+    UIView * superView = view.superview.superview;
+    if(superView){
+        return superView;
+    }else{
+        return view.window;
+    }
+}
 @end
