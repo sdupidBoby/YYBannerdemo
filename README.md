@@ -23,3 +23,4 @@ iOS 实现凤凰新闻的视觉差轮播图
     bannerView.callBack = ^(YYBannerModel * model , int index){
         NSLog(@"CodeIndex %d", index);
     };
+[detail!](https://www.jianshu.com/p/974342c2be31)
