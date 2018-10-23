@@ -3,7 +3,7 @@
 //  新型轮播图
 //
 //  Created by admin on 16/11/14.
-//  Copyright © 2016年 xincheng. All rights reserved.
+//  Copyright © 2016年 admin. All rights reserved.
 //
 #import "Masonry.h"
 #import "YYBannerView.h"
@@ -30,7 +30,7 @@
 @property (nonatomic,strong)CAGradientLayer * titleBackLayer;
 @property (nonatomic, strong)UIView * titleBackView;
 
-@property (nonatomic, strong)NSArray * dataArr;
+@property (nonatomic, strong)NSArray<YYBannerProtocol> * dataArr;
 @property (nonatomic, assign,readwrite)int  currentIndex;
 @property (nonatomic, assign,readwrite)int  forwardIndex;
 @property (nonatomic, assign,readwrite)int  backwardIndex;
@@ -59,7 +59,6 @@
 }
 -(void)awakeFromNib{
     [super awakeFromNib];
-
     [self setUp];
 }
 -(void)dealloc{
@@ -90,12 +89,19 @@
             //[_scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.bounds), 0) animated:YES];
         }
     
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue() ,^{
             if (self.dataArr.count == 1) {
-                _scrollView.contentOffset = CGPointMake(0, 0);
+                self.scrollView.contentOffset = CGPointMake(0, 0);
             }
             if (self.dataArr.count >= 2) {
-                _scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.bounds), 0);
+                self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.bounds), 0);
+            }
+            if (@available(iOS 11.0, *)) {
+            }else{
+                // iOS 11.0 之前
+                //使用xib初始化的时候，contentinset会受到xib加载周期的影响（xib很多的属性都在这里被设置），出现向下64（automaticallyAdjustsScrollViewInsets）。
+                //所以在设置一次*
+                self.scrollView.contentInset = UIEdgeInsetsZero;
             }
         });
     }
@@ -122,78 +128,90 @@
 -(void)setYYBannerType:(YYBannerType)type{
     self.bannerType = type;
 }
--(void)setDataWithArray:(NSArray<YYBannerModel  *> *)dataAyy TitleStyle:(YYBannerTitleStyle)Tstyle PageStyle:(YYBannerPageStyle)Pstyle{
-    if ([dataAyy[0] isKindOfClass:[YYBannerModel class]]) {
-        self.dataArr = dataAyy;
-        self.bannerTitleType = Tstyle;
-        self.bannerPageType = Pstyle;
-        
-        if (self.dataArr.count == 0) {
-            return;
-        }
-        //layoutIfneed set content size （adapt autolayout）
-        [self layoutIfNeeded];
-        
-        self.titleLabel.hidden = NO;
-        self.pageControl.hidden = NO;
-        
-        switch (Tstyle) {
-           
-            case YYBannerTitleStyleLeft:
-            {
-                self.titleLabel.textAlignment = NSTextAlignmentLeft;
-                break;
-            }
-            case YYBannerTitleStyleRight:
-            {
-                self.titleLabel.textAlignment = NSTextAlignmentRight;
-                break;
-            }
-            case YYBannerTitleStyleCenter:
-            {
-                self.titleLabel.textAlignment = NSTextAlignmentCenter;
-                break;
-            }
-            case YYBannerTitleStyleNone:
-            {
-                self.titleLabel.hidden = YES;
-                self.titleBackLayer.hidden = YES;
-                break;
-            }
-        }
-        
-        switch (Pstyle) {
-            case YYBannerPageStyleNone:
-            {
-                self.pageControl.hidden = YES;
-                 break;
-            }
-            case YYBannerPageStyleLeft:
-            {
-                [self.pageControl mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_offset(self.dataArr.count * 26);
-                    make.left.bottom.top.mas_equalTo(self.titleBackView);
-                }];
-                break;
-            }
-            case YYBannerPageStyleRight:
-            {
-                [self.pageControl mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_offset(self.dataArr.count * 26);
-                    make.right.bottom.top.mas_equalTo(self.titleBackView);
-                }];
-                break;
-            }
-            case YYBannerPageStyleCenter:
-            {
-                break;
-            }
-        }
-        
-        self.pageControl.numberOfPages = self.dataArr.count;
+-(void)setDataWithArray:(NSArray<YYBannerProtocol> *)dataAyy TitleStyle:(YYBannerTitleStyle)Tstyle PageStyle:(YYBannerPageStyle)Pstyle{
     
-        [self setContainerImageViews];
+    if (![[dataAyy firstObject] conformsToProtocol:@protocol(YYBannerProtocol)] ||
+        !dataAyy) {
+        return;
     }
+    
+    if (dataAyy.count != self.dataArr.count) {
+        self.dataArr = dataAyy;
+        self.currentIndex = 0;
+        [self resetTimer];
+    }else{
+        [self resetTimer];
+        self.dataArr = dataAyy;
+    }
+    
+    self.bannerTitleType = Tstyle;
+    self.bannerPageType = Pstyle;
+    
+    if (self.dataArr.count <= 0) {
+        return;
+    }
+    //layoutIfneed set content size （adapt autolayout）
+    [self layoutIfNeeded];
+    
+    self.titleLabel.hidden = NO;
+    self.pageControl.hidden = NO;
+    
+    switch (Tstyle) {
+       
+        case YYBannerTitleStyleLeft:
+        {
+            self.titleLabel.textAlignment = NSTextAlignmentLeft;
+            break;
+        }
+        case YYBannerTitleStyleRight:
+        {
+            self.titleLabel.textAlignment = NSTextAlignmentRight;
+            break;
+        }
+        case YYBannerTitleStyleCenter:
+        {
+            self.titleLabel.textAlignment = NSTextAlignmentCenter;
+            break;
+        }
+        case YYBannerTitleStyleNone:
+        {
+            self.titleLabel.hidden = YES;
+            self.titleBackLayer.hidden = YES;
+            break;
+        }
+    }
+    
+    switch (Pstyle) {
+        case YYBannerPageStyleNone:
+        {
+            self.pageControl.hidden = YES;
+             break;
+        }
+        case YYBannerPageStyleLeft:
+        {
+            [self.pageControl mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.titleBackView).offset(4);
+                make.bottom.equalTo(self.titleBackView).offset(10);
+            }];
+            break;
+        }
+        case YYBannerPageStyleRight:
+        {
+            [self.pageControl mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.titleBackView).offset(-4);
+                make.bottom.equalTo(self.titleBackView).offset(10);
+            }];
+            break;
+        }
+        case YYBannerPageStyleCenter:
+        {
+            break;
+        }
+    }
+    
+    self.pageControl.numberOfPages = self.dataArr.count;
+
+    [self setContainerImageViews];
 }
 
 - (void)pauseTimer{
@@ -252,13 +270,12 @@
     
 }
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    scrollView.contentInset = UIEdgeInsetsZero;
     [self pauseTimer];
 }
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     
 }
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{ //减速
 
     div_t x = div(scrollView.contentOffset.x,scrollView.frame.size.width);
 
@@ -272,8 +289,7 @@
     self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(scrollView.bounds), 0);
     
     [self resumeTimer];
-    
-       NSLog(@"Decelerating  %d" ,self.currentIndex);
+    NSLog(@"Decelerating  %d" ,self.currentIndex);
 }
 
 //call timer
@@ -292,52 +308,89 @@
 }
 
 #pragma mark ****************************** event   Response    ******************************
+-(NSString *)getSafeTitleWithIndex:(int )index{
+    if([self.dataArr count] > 0 && [self.dataArr count] > index)
+    {
+        NSString * titleString = ((YYBannerModel *)[self.dataArr safeObjectAtIndex:index]).title;
+        if (titleString == nil) {
+            titleString = @"";
+        }
+        self.titleBackLayer.hidden = NO;
+        if (titleString.length <= 0) {
+            self.titleBackLayer.hidden = YES;
+        }
+        return titleString;
+    }
+    return @"";
+}
+-(NSString *)getSafeThumbWithIndex:(int )index{
+    if([self.dataArr count] > 0 && [self.dataArr count] > index)
+    {
+        return ((YYBannerModel *)[self.dataArr safeObjectAtIndex:index]).thumb;
+    }
+    return @"";
+}
+
 -(void)setContainerImageViews{
     NSLog(@"%d" ,self.currentIndex);
     self.titleLabel.text = ((YYBannerModel *)self.dataArr[_currentIndex]).title;
+    
     [self.leftImageView setContentIMGWithStr:((YYBannerModel *)self.dataArr[_backwardIndex]).thumb palceHolder:self.placeHoldImage];
     [self.centerImageView setContentIMGWithStr:((YYBannerModel *)self.dataArr[_currentIndex]).thumb palceHolder:self.placeHoldImage];
     [self.rightImageView setContentIMGWithStr:((YYBannerModel *)self.dataArr[_forwardIndex]).thumb palceHolder:self.placeHoldImage];
 }
 -(void)tapFuncCallBack
 {
-    YYBannerModel * model = self.dataArr[self.currentIndex];
+    id model = self.dataArr[self.currentIndex];
     if (self.delegate && [self.delegate respondsToSelector:@selector(YYBannerView:bannerModel:index:)]) {
         [self.delegate YYBannerView:self bannerModel:model index:self.currentIndex];
     }
     if (self.callBack) {
         self.callBack(model,self.currentIndex);
     }
-    
+}
+-(void)changToTapFunc:(YYBannerCallBlock)callBack{
+    self.callBack = callBack;
 }
 #pragma mark ****************************** private Methods     ******************************
 
 #pragma mark ****************************** getter and setter   ******************************
 
 -(void)setUp{
+    self.opaque = YES;
+    self.backgroundColor = [UIColor whiteColor];
     
+//    CGFloat heigit = self.bounds.size.height;
+//    if (self.bounds.size.height > 300) {
+//        heigit = 250;
+//    }
     _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
     [self addSubview:_scrollView];
     _scrollView.bounces = NO;
     _scrollView.delegate = self;
+    _scrollView.clipsToBounds = YES;
     _scrollView.pagingEnabled = YES;
-    _scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
     _scrollView.directionalLockEnabled = YES;
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.backgroundColor = [UIColor whiteColor];
+    _scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
+    _scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     //该句是否执行会影响pageControl的位置,如果该应用上面有导航栏,就是用该句,否则注释掉即可
-    _scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    _scrollView.clipsToBounds = YES;
+    _scrollView.contentInset = UIEdgeInsetsZero;
     
     for (int i = 0 ; i <3 ; i++) {
-        YYBannerContentView * imageView =  [[YYBannerContentView alloc]initWithFrame:CGRectMake(i* CGRectGetWidth(self.bounds), 0, CGRectGetWidth(self.bounds),  CGRectGetHeight(self.bounds))];
+        YYBannerContentView * imageView =  [[YYBannerContentView alloc]initWithFrame:
+                                            CGRectMake(i* CGRectGetWidth(self.bounds),
+                                                       0,
+                                                       CGRectGetWidth(self.bounds),
+                                                       CGRectGetHeight(self.bounds))];
         [_scrollView addSubview:imageView];
-        
         switch (i) {
             case 0:
             {
                 _leftImageView = imageView;
+                [_leftImageView setUserInteraction:YES];
             }
                 break;
             case 1:
@@ -375,6 +428,7 @@
     
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.bounds.size.height - 36, CGRectGetWidth(self.bounds), 36)];
     self.titleLabel.textColor = [UIColor whiteColor];
+    self.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.titleBackView addSubview:self.titleLabel];
     
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, self.bounds.size.height - 36, CGRectGetWidth(self.bounds), 36)];
@@ -382,22 +436,23 @@
     
     {
         [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.center.equalTo(self);
+            make.size.equalTo(self);
         }];
         [self.leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(self.scrollView);
             make.top.equalTo(self.scrollView);
             make.left.equalTo(self.scrollView).mas_offset(0);
+            make.width.height.equalTo(self.scrollView);
         }];
         [self.centerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(self.scrollView);
             make.top.equalTo(self.scrollView);
             make.left.equalTo(self.leftImageView.mas_right);
+            make.width.height.equalTo(self.scrollView);
         }];
         [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(self.scrollView);
             make.top.equalTo(self.scrollView);
             make.left.equalTo(self.centerImageView.mas_right);
+            make.width.height.equalTo(self.scrollView);
         }];
         
         [self.titleBackView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -406,15 +461,22 @@
         }];
         
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.titleBackView);
+            make.center.equalTo(self.titleBackView);
+            //            make.size.equalTo(self.titleBackView);
+            make.height.equalTo(self.titleBackView);
+            make.width.equalTo(self.titleBackView).offset(-10);
         }];
         [self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.titleBackView);
+            make.center.equalTo(self.titleBackView);
+            //            make.size.equalTo(self.titleBackView);
         }];
     }
    
     __weak typeof(self) WeakSelf = self;
     _centerImageView.callBack = ^(YYBannerContentView * sender){
+        [WeakSelf tapFuncCallBack];
+    };
+    _leftImageView.callBack = ^(YYBannerContentView * sender){
         [WeakSelf tapFuncCallBack];
     };
     [self resetTimer];
@@ -450,7 +512,7 @@
         self.timer = nil;
     }
 }
-- (void)setDataArr:(NSArray *)dataArr{
+- (void)setDataArr:(NSArray<YYBannerProtocol> *)dataArr{
     _dataArr = dataArr;
 }
 -(BOOL)autoScroll{
@@ -462,4 +524,16 @@
 }
 //[self.pageControl setValue:currentImage forKey:@"_currentPageImage"];
 //[self.pageControl setValue:otherImage forKey:@"_pageImage"];
+@end
+
+@implementation NSArray (YYBanner)
+
+- (id)safeObjectAtIndex:(NSUInteger)index
+{
+    if([self count] > 0 && [self count] > index)
+    {
+        return [self objectAtIndex:index];
+    }
+    return nil;
+}
 @end

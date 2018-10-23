@@ -14,11 +14,11 @@
 		3DA83A561DF4657800C8D80F /* CF_Album_BG55@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA83A461DF4657800C8D80F /* CF_Album_BG55@2x.png */; };
 		3DA83A571DF4657800C8D80F /* CF_Album_BG56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DA83A471DF4657800C8D80F /* CF_Album_BG56@2x.png */; };
 		3DA83A581DF4657800C8D80F /* 美女.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DA83A481DF4657800C8D80F /* 美女.jpg */; };
-		3DA83A591DF4657800C8D80F /* YYBannerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA83A4B1DF4657800C8D80F /* YYBannerContentView.m */; };
-		3DA83A5A1DF4657800C8D80F /* YYBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA83A4D1DF4657800C8D80F /* YYBannerModel.m */; };
-		3DA83A5B1DF4657800C8D80F /* YYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA83A4F1DF4657800C8D80F /* YYBannerView.m */; };
-		3DA83A5C1DF4657800C8D80F /* YYRollBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA83A511DF4657800C8D80F /* YYRollBarView.m */; };
 		3DD40C141DE1E193002A2DF0 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD40C131DE1E193002A2DF0 /* PushViewController.m */; };
+		845AF97C217F13FB0081D90D /* YYBannerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF975217F13FB0081D90D /* YYBannerContentView.m */; };
+		845AF97D217F13FB0081D90D /* YYBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF977217F13FB0081D90D /* YYBannerModel.m */; };
+		845AF97E217F13FB0081D90D /* YYBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF979217F13FB0081D90D /* YYBannerView.m */; };
+		845AF97F217F13FB0081D90D /* YYRollBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845AF97B217F13FB0081D90D /* YYRollBarView.m */; };
 		8485A6BC1DDD3AF400D1F76A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485A6BB1DDD3AF400D1F76A /* main.m */; };
 		8485A6BF1DDD3AF400D1F76A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485A6BE1DDD3AF400D1F76A /* AppDelegate.m */; };
 		8485A6C21DDD3AF400D1F76A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8485A6C11DDD3AF400D1F76A /* ViewController.m */; };
@@ -80,16 +80,16 @@
 		3DA83A461DF4657800C8D80F /* CF_Album_BG55@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CF_Album_BG55@2x.png"; sourceTree = "<group>"; };
 		3DA83A471DF4657800C8D80F /* CF_Album_BG56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CF_Album_BG56@2x.png"; sourceTree = "<group>"; };
 		3DA83A481DF4657800C8D80F /* 美女.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "美女.jpg"; sourceTree = "<group>"; };
-		3DA83A4A1DF4657800C8D80F /* YYBannerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerContentView.h; sourceTree = "<group>"; };
-		3DA83A4B1DF4657800C8D80F /* YYBannerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerContentView.m; sourceTree = "<group>"; };
-		3DA83A4C1DF4657800C8D80F /* YYBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerModel.h; sourceTree = "<group>"; };
-		3DA83A4D1DF4657800C8D80F /* YYBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerModel.m; sourceTree = "<group>"; };
-		3DA83A4E1DF4657800C8D80F /* YYBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerView.h; sourceTree = "<group>"; };
-		3DA83A4F1DF4657800C8D80F /* YYBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerView.m; sourceTree = "<group>"; };
-		3DA83A501DF4657800C8D80F /* YYRollBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRollBarView.h; sourceTree = "<group>"; };
-		3DA83A511DF4657800C8D80F /* YYRollBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYRollBarView.m; sourceTree = "<group>"; };
 		3DD40C121DE1E193002A2DF0 /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		3DD40C131DE1E193002A2DF0 /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		845AF974217F13FB0081D90D /* YYBannerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerContentView.h; sourceTree = "<group>"; };
+		845AF975217F13FB0081D90D /* YYBannerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerContentView.m; sourceTree = "<group>"; };
+		845AF976217F13FB0081D90D /* YYBannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerModel.h; sourceTree = "<group>"; };
+		845AF977217F13FB0081D90D /* YYBannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerModel.m; sourceTree = "<group>"; };
+		845AF978217F13FB0081D90D /* YYBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYBannerView.h; sourceTree = "<group>"; };
+		845AF979217F13FB0081D90D /* YYBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYBannerView.m; sourceTree = "<group>"; };
+		845AF97A217F13FB0081D90D /* YYRollBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYRollBarView.h; sourceTree = "<group>"; };
+		845AF97B217F13FB0081D90D /* YYRollBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYRollBarView.m; sourceTree = "<group>"; };
 		8485A6B71DDD3AF400D1F76A /* YYBannerdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YYBannerdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8485A6BB1DDD3AF400D1F76A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8485A6BD1DDD3AF400D1F76A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -204,20 +204,20 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
-		3DA83A491DF4657800C8D80F /* YYBannerView */ = {
+		845AF973217F13FB0081D90D /* YYBannerView */ = {
 			isa = PBXGroup;
 			children = (
-				3DA83A4A1DF4657800C8D80F /* YYBannerContentView.h */,
-				3DA83A4B1DF4657800C8D80F /* YYBannerContentView.m */,
-				3DA83A4C1DF4657800C8D80F /* YYBannerModel.h */,
-				3DA83A4D1DF4657800C8D80F /* YYBannerModel.m */,
-				3DA83A4E1DF4657800C8D80F /* YYBannerView.h */,
-				3DA83A4F1DF4657800C8D80F /* YYBannerView.m */,
-				3DA83A501DF4657800C8D80F /* YYRollBarView.h */,
-				3DA83A511DF4657800C8D80F /* YYRollBarView.m */,
+				845AF974217F13FB0081D90D /* YYBannerContentView.h */,
+				845AF975217F13FB0081D90D /* YYBannerContentView.m */,
+				845AF976217F13FB0081D90D /* YYBannerModel.h */,
+				845AF977217F13FB0081D90D /* YYBannerModel.m */,
+				845AF978217F13FB0081D90D /* YYBannerView.h */,
+				845AF979217F13FB0081D90D /* YYBannerView.m */,
+				845AF97A217F13FB0081D90D /* YYRollBarView.h */,
+				845AF97B217F13FB0081D90D /* YYRollBarView.m */,
 			);
 			path = YYBannerView;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		8485A6AE1DDD3AF400D1F76A = {
 			isa = PBXGroup;
@@ -242,8 +242,8 @@
 		8485A6B91DDD3AF400D1F76A /* YYBannerdemo */ = {
 			isa = PBXGroup;
 			children = (
+				845AF973217F13FB0081D90D /* YYBannerView */,
 				3DA83A411DF4657800C8D80F /* resource */,
-				3DA83A491DF4657800C8D80F /* YYBannerView */,
 				8485A7031DDD3DD200D1F76A /* 3rdP */,
 				8485A6BD1DDD3AF400D1F76A /* AppDelegate.h */,
 				8485A6BE1DDD3AF400D1F76A /* AppDelegate.m */,
@@ -428,11 +428,12 @@
 		8485A6AF1DDD3AF400D1F76A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = YS;
 				TargetAttributes = {
 					8485A6B61DDD3AF400D1F76A = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = K3U9F7B5WK;
 						ProvisioningStyle = Automatic;
 					};
 					8485A6CF1DDD3AF400D1F76A = {
@@ -509,12 +510,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DA83A591DF4657800C8D80F /* YYBannerContentView.m in Sources */,
+				845AF97C217F13FB0081D90D /* YYBannerContentView.m in Sources */,
 				8485A7551DDD3ED500D1F76A /* NSArray+MASAdditions.m in Sources */,
 				8485A6C21DDD3AF400D1F76A /* ViewController.m in Sources */,
 				8485A7301DDD3DEF00D1F76A /* UIImageView+HighlightedWebCache.m in Sources */,
 				8485A7561DDD3ED500D1F76A /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
-				3DA83A5C1DF4657800C8D80F /* YYRollBarView.m in Sources */,
+				845AF97F217F13FB0081D90D /* YYRollBarView.m in Sources */,
 				8485A7311DDD3DEF00D1F76A /* UIImageView+WebCache.m in Sources */,
 				8485A72B1DDD3DEF00D1F76A /* SDWebImageManager.m in Sources */,
 				8485A6BF1DDD3AF400D1F76A /* AppDelegate.m in Sources */,
@@ -522,7 +523,7 @@
 				8485A7571DDD3ED500D1F76A /* View+MASAdditions.m in Sources */,
 				8485A7271DDD3DEF00D1F76A /* SDWebImageDecoder.m in Sources */,
 				8485A7501DDD3ED500D1F76A /* MASConstraint.m in Sources */,
-				3DA83A5B1DF4657800C8D80F /* YYBannerView.m in Sources */,
+				845AF97E217F13FB0081D90D /* YYBannerView.m in Sources */,
 				8485A7281DDD3DEF00D1F76A /* SDWebImageDownloader.m in Sources */,
 				8485A7541DDD3ED500D1F76A /* MASViewConstraint.m in Sources */,
 				8485A72D1DDD3DEF00D1F76A /* UIButton+WebCache.m in Sources */,
@@ -532,7 +533,7 @@
 				8485A7261DDD3DEF00D1F76A /* SDWebImageCompat.m in Sources */,
 				8485A7581DDD3ED500D1F76A /* ViewController+MASAdditions.m in Sources */,
 				8485A7241DDD3DEF00D1F76A /* NSData+ImageContentType.m in Sources */,
-				3DA83A5A1DF4657800C8D80F /* YYBannerModel.m in Sources */,
+				845AF97D217F13FB0081D90D /* YYBannerModel.m in Sources */,
 				8485A7521DDD3ED500D1F76A /* MASLayoutConstraint.m in Sources */,
 				3DD40C141DE1E193002A2DF0 /* PushViewController.m in Sources */,
 				8485A74F1DDD3ED500D1F76A /* MASCompositeConstraint.m in Sources */,
@@ -605,15 +606,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -653,15 +663,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -690,7 +709,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K3U9F7B5WK;
 				INFOPLIST_FILE = YYBannerdemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -703,7 +722,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K3U9F7B5WK;
 				INFOPLIST_FILE = YYBannerdemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

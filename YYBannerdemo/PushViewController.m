@@ -58,7 +58,9 @@
  */
 - (void)SetUpSelfProperty
 {
-/* xib initialize */
+    
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+
     NSMutableArray * arr = [[NSMutableArray alloc]init];
     for (int i = 1; i <= 3; i ++ ) {
         YYBannerModel * model = [[YYBannerModel alloc]init];
@@ -66,12 +68,12 @@
         model.title = [NSString stringWithFormat:@"CF_Album_BG5%d",i ];
         [arr addObject:model];
     }
-    
-    
+
+/* xib initialize */
     [self.xibBannerView setAutoScroll:NO];
     [self.xibBannerView setYYBannerType:YYBannerType_illusion];
     [_xibBannerView setDataWithArray:arr TitleStyle:YYBannerTitleStyleLeft PageStyle:YYBannerPageStyleRight];
-    
+
     _xibBannerView.callBack = ^(YYBannerModel * model , int index){
         NSLog(@"XibIndex %d", index);
     };
@@ -84,6 +86,7 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(200);
     }];
+    [bannerView setAutoScroll:NO];
     [bannerView setDataWithArray:arr TitleStyle:YYBannerTitleStyleLeft PageStyle:YYBannerPageStyleRight];
     [bannerView setYYBannerType:YYBannerType_illusion];
 

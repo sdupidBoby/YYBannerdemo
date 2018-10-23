@@ -3,7 +3,7 @@
 //  新型轮播图
 //
 //  Created by admin on 16/11/14.
-//  Copyright © 2016年 xincheng. All rights reserved.
+//  Copyright © 2016年 admin. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, YYBannerTitleStyle)
 };
 
 
-typedef void(^YYBannerCallBlock)(YYBannerModel * model,int index);
+typedef void(^YYBannerCallBlock)(id<YYBannerProtocol> model,int index);
 
 @protocol YYBannerDelegate;
 
@@ -50,10 +50,13 @@ typedef void(^YYBannerCallBlock)(YYBannerModel * model,int index);
 @property (nonatomic, assign,readonly)YYBannerPageStyle bannerPageType;
 @property (nonatomic, assign,readonly)YYBannerTitleStyle bannerTitleType;
 
+/**  回调 */
+-(void)changToTapFunc:(YYBannerCallBlock)callBack;
+
 //Xib创建 单独设置type
 -(void)setYYBannerType:(YYBannerType)type;
 
--(void)setDataWithArray:(NSArray<YYBannerModel *> *)dataAyy TitleStyle:(YYBannerTitleStyle)Tstyle PageStyle:(YYBannerPageStyle)Pstyle;
+-(void)setDataWithArray:(NSArray<YYBannerProtocol> *)dataAyy TitleStyle:(YYBannerTitleStyle)Tstyle PageStyle:(YYBannerPageStyle)Pstyle;
 
 -(instancetype)init NS_UNAVAILABLE;
 
@@ -61,7 +64,18 @@ typedef void(^YYBannerCallBlock)(YYBannerModel * model,int index);
 
 @protocol YYBannerDelegate <NSObject>
 
-- (void)YYBannerView:(YYBannerView *)view bannerModel:(YYBannerModel *)model index:(int )index;
+- (void)YYBannerView:(YYBannerView *)view bannerModel:(id<YYBannerProtocol>)model index:(int )index;
 
 @end
 NS_ASSUME_NONNULL_END
+
+@interface NSArray (YYBanner)
+/**
+ *  Get the object at a given index in safe mode (nil if self is empty or out of range)
+ *
+ *  @param index The index
+ *
+ *  @return Return the object at a given index in safe mode (nil if self is empty or out of range)
+ */
+- (id)safeObjectAtIndex:(NSUInteger)index;
+@end

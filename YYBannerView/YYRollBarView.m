@@ -253,7 +253,7 @@ static NSMutableAttributedString * getAttStr(NSString * str){
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(8);
             make.centerY.equalTo(self);
-            make.size.mas_equalTo(_titleSize);
+            make.size.mas_equalTo(self->_titleSize);
         }];
 
         [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {

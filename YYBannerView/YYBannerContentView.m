@@ -31,7 +31,8 @@
         [self addSubview:self.contentIMG];
         
         [self.contentIMG mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
+            make.center.equalTo(self);
+            make.size.equalTo(self);
         }];
     }
     return self;
@@ -50,10 +51,15 @@
     }
 }
 -(void)setContentIMGWithStr:(NSString *)str palceHolder:(UIImage *)image{
-    if ([str hasPrefix:@"http://"]) {
+    if ([str hasPrefix:@"http"]) {
         [self.contentIMG sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:image];
-    }else{
-        [self.contentIMG setImage:[UIImage imageNamed:str]];
+    }else{ // 策略： 不是网络图片就先考虑使用本地图片
+        UIImage * localimage = [UIImage imageNamed:str];
+        if (localimage){
+            [self.contentIMG setImage:localimage];
+        }else {
+            [self.contentIMG setImage:image];
+        }
     }
 }
 
