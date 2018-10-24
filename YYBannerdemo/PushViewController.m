@@ -87,7 +87,9 @@
         make.height.mas_equalTo(200);
     }];
     [bannerView setAutoScroll:NO];
-    [bannerView setDataWithArray:arr TitleStyle:YYBannerTitleStyleLeft PageStyle:YYBannerPageStyleRight];
+    NSMutableArray * arr2 = [NSMutableArray arrayWithObject:[arr firstObject]];
+
+    [bannerView setDataWithArray:arr2 TitleStyle:YYBannerTitleStyleLeft PageStyle:YYBannerPageStyleRight];
     [bannerView setYYBannerType:YYBannerType_illusion];
 
     bannerView.callBack = ^(YYBannerModel * model , int index){
