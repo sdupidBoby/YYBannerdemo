@@ -96,8 +96,7 @@
             if (self.dataArr.count >= 2) {
                 self.scrollView.contentOffset = CGPointMake(CGRectGetWidth(self.bounds), 0);
             }
-            if (@available(iOS 11.0, *)) {
-            }else{
+            if (@available(iOS 11.0, *)) {}else{
                 // iOS 11.0 之前
                 //使用xib初始化的时候，contentinset会受到xib加载周期的影响（xib很多的属性都在这里被设置），出现向下64（automaticallyAdjustsScrollViewInsets）。
                 //所以在设置一次*
